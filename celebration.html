@@ -384,8 +384,8 @@
             const name = this.querySelector('input[type="text"]').value;
             const attendance = this.querySelector('input[name="att"]:checked').value;
 
-            // NOTE: Use the Production URL when ready (remove '-test' from the URL)
-            const WEBHOOK_URL = 'https://n8n.solidiaai.com/webhook-test/f3153754-f13c-459f-8aaf-18d98cfc44ee';
+            // NOTE: Using Production URL. ensure to ACTIVATE the workflow in n8n.
+            const WEBHOOK_URL = 'https://n8n.solidiaai.com/webhook/f3153754-f13c-459f-8aaf-18d98cfc44ee';
 
             fetch(WEBHOOK_URL, {
                 method: 'POST',
@@ -399,11 +399,15 @@
                 })
             })
                 .then(response => {
-                    this.style.opacity = '0';
-                    setTimeout(() => {
-                        this.style.display = 'none';
-                        document.getElementById('success-msg').classList.remove('hidden');
-                    }, 500);
+                    if (response.ok) {
+                        this.style.opacity = '0';
+                        setTimeout(() => {
+                            this.style.display = 'none';
+                            document.getElementById('success-msg').classList.remove('hidden');
+                        }, 500);
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
