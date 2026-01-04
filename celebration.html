@@ -127,6 +127,52 @@
             }
         }
 
+        /* Rings Animation */
+        .rings-container {
+            position: relative;
+            width: 100px;
+            height: 60px;
+            margin: 0 auto 2rem;
+        }
+
+        .ring {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--gold-accent);
+            border-radius: 50%;
+            top: 10px;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+            opacity: 0;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .ring-left {
+            left: 50%;
+            transform: translateX(-150%);
+            animation: joinLeft 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+        }
+
+        .ring-right {
+            right: 50%;
+            transform: translateX(150%);
+            animation: joinRight 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+        }
+
+        @keyframes joinLeft {
+            to {
+                transform: translateX(-35%);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes joinRight {
+            to {
+                transform: translateX(35%);
+                opacity: 0.9;
+            }
+        }
+
         main {
             position: relative;
             z-index: 5;
@@ -174,9 +220,13 @@
     <!-- CONTENIDO -->
     <main class="max-w-4xl mx-auto px-6 py-24 relative fade-in">
         <header class="text-center py-20">
+            <div class="rings-container">
+                <div class="ring ring-left"></div>
+                <div class="ring ring-right"></div>
+            </div>
             <p class="uppercase tracking-[0.6em] text-[10px] mb-8 text-gold font-light">Join us to celebrate the wedding
-                party of</p>
-            <h1 class="text-4xl md:text-6xl mb-8 italic font-thin leading-tight px-4">Brianna Fenguer & Leonardo Rincon
+                of</p>
+            <h1 class="text-4xl md:text-6xl mb-8 italic font-thin leading-tight px-4">Brianna Fenger & Leonardo Rincon
             </h1>
             <div class="section-divider"></div>
             <p class="text-2xl md:text-3xl serif italic mb-16 opacity-80">Saturday, February 7th, 2026</p>
@@ -238,7 +288,7 @@
                     class="w-full bg-transparent border-b border-[#f9f7f21a] py-4 text-[11px] tracking-widest focus:outline-none focus:border-gold transition-colors uppercase"
                     required>
                 <div class="pt-6">
-                    <p class="text-[11px] uppercase tracking-widest text-gold mb-8">Will you be attending the party?</p>
+                    <p class="text-[11px] uppercase tracking-widest text-gold mb-8">Will you be attending?</p>
                     <div class="flex flex-col gap-6">
                         <label class="flex items-center gap-4 cursor-pointer group">
                             <input type="radio" name="att" value="yes" class="accent-gold" checked>
