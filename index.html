@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Celebration - Brianna & Leonardo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-color: #141f18;
+            --text-main: #f9f7f2;
+            --gold-accent: #c5a059;
+            --card-overlay: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .flower-corner {
+            position: fixed;
+            z-index: 55;
+            pointer-events: none;
+            width: 400px;
+            opacity: 0.95;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+        }
+
+        .top-left {
+            top: -60px;
+            left: -60px;
+        }
+
+        .bottom-right {
+            bottom: -60px;
+            right: -60px;
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .flower-corner {
+                width: 220px;
+            }
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-accent), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        .text-gold {
+            color: var(--gold-accent);
+        }
+
+        .btn-gold {
+            background-color: var(--gold-accent);
+            color: #141f18;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            letter-spacing: 0.3em;
+        }
+
+        .btn-gold:hover {
+            background-color: #dcc28d;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
+        }
+
+        .glass-card {
+            background: var(--card-overlay);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(249, 247, 242, 0.08);
+            border-radius: 4px;
+            position: relative;
+            z-index: 10;
+        }
+
+        input {
+            color: white !important;
+            border-bottom: 1px solid rgba(249, 247, 242, 0.2) !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            position: relative;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body class="relative">
+
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Marco botánico fijo -->
+    <div class="flower-corner top-left">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 20C80 40 30 140 10 180" stroke="#2a3d30" stroke-width="2" />
+            <path d="M120 40C150 90 90 180 50 220" stroke="#354d3d" stroke-width="1.5" opacity="0.6" />
+            <g transform="translate(100,100)">
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(45)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(90)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(135)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(180)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(225)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(270)" opacity="0.95" />
+                <ellipse cx="0" cy="-35" rx="15" ry="40" fill="white" transform="rotate(315)" opacity="0.95" />
+                <circle cx="0" cy="0" r="10" fill="#d4af37" />
+                <circle cx="0" cy="0" r="4" fill="#8a6d1d" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="flower-corner bottom-right">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(120,120)">
+                <ellipse cx="0" cy="-40" rx="18" ry="45" fill="white" transform="rotate(15)" opacity="0.9" />
+                <ellipse cx="0" cy="-40" rx="18" ry="45" fill="white" transform="rotate(105)" opacity="0.9" />
+                <ellipse cx="0" cy="-40" rx="18" ry="45" fill="white" transform="rotate(195)" opacity="0.9" />
+                <ellipse cx="0" cy="-40" rx="18" ry="45" fill="white" transform="rotate(285)" opacity="0.9" />
+                <circle cx="0" cy="0" r="12" fill="#d4af37" />
+            </g>
+            <path d="M50 50C100 80 150 150 180 200" stroke="#2a3d30" stroke-width="2" opacity="0.4" />
+        </svg>
+    </div>
+
+    <!-- CONTENIDO -->
+    <main class="max-w-4xl mx-auto px-6 py-24 relative fade-in">
+        <header class="text-center py-20">
+            <p class="uppercase tracking-[0.6em] text-[10px] mb-8 text-gold font-light">Join us to celebrate the wedding
+                party of</p>
+            <h1 class="text-4xl md:text-6xl mb-8 italic font-thin leading-tight px-4">Brianna Fenguer & Leonardo Rincon
+            </h1>
+            <div class="section-divider"></div>
+            <p class="text-2xl md:text-3xl serif italic mb-16 opacity-80">Saturday, February 7th, 2026</p>
+
+            <div id="countdown" class="flex justify-center gap-4 md:gap-16 text-center py-10">
+                <div class="w-24">
+                    <span id="days" class="block text-4xl md:text-5xl font-extralight mb-2">00</span>
+                    <span class="text-[10px] opacity-40 uppercase tracking-widest">Days</span>
+                </div>
+                <div class="w-24">
+                    <span id="hours" class="block text-4xl md:text-5xl font-extralight mb-2">00</span>
+                    <span class="text-[10px] opacity-40 uppercase tracking-widest">Hours</span>
+                </div>
+                <div class="w-24">
+                    <span id="minutes" class="block text-4xl md:text-5xl font-extralight mb-2">00</span>
+                    <span class="text-[10px] opacity-40 uppercase tracking-widest">Mins</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="max-w-2xl mx-auto mb-20 relative z-10 text-center">
+            <div class="glass-card p-12">
+                <i data-lucide="heart" class="mx-auto mb-8 text-gold opacity-60" size="40"></i>
+                <h3 class="text-4xl mb-6 serif italic">The Ceremony</h3>
+                <p class="font-light mb-10 opacity-70 leading-relaxed text-lg">Middle Brighton Beach<br>Brighton, VIC
+                </p>
+                <a href="https://www.google.com/maps/place/37%C2%B054'48.6%22S+144%C2%B059'06.1%22E/@-37.9135,144.9850278,621m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d-37.9135!4d144.9850278?entry=ttu"
+                    target="_blank"
+                    class="inline-block px-10 py-4 btn-gold rounded-sm text-[11px] uppercase font-bold transition-all">View
+                    on Google Maps</a>
+            </div>
+        </section>
+
+        <section class="max-w-2xl mx-auto mb-40 relative z-10 text-center">
+            <div class="glass-card p-12">
+                <i data-lucide="sparkles" class="mx-auto mb-8 text-gold opacity-60" size="40"></i>
+                <h3 class="text-4xl mb-6 serif italic">The Celebration</h3>
+                <p class="text-[11px] uppercase tracking-[0.4em] mb-4 text-gold font-medium">Starting at 6:00 PM</p>
+                <p class="font-light mb-10 opacity-70 leading-relaxed text-lg">81 St Albans Rd<br>Melbourne, VIC</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=81+st+albans+rd+melbourne" target="_blank"
+                    class="inline-block px-10 py-4 btn-gold rounded-sm text-[11px] uppercase font-bold transition-all">View
+                    on Google Maps</a>
+            </div>
+        </section>
+
+        <!-- Carpark Section -->
+        <section class="max-w-2xl mx-auto mb-40 relative z-10 text-center">
+            <div class="glass-card p-12">
+                <!-- CSS Parking Logo -->
+                <div class="mx-auto mb-8 w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center border-2 border-white/20 shadow-lg"
+                    style="background-color: #2563eb;">
+                    <span class="text-white font-sans font-bold text-3xl">P</span>
+                </div>
+                <h3 class="text-4xl mb-6 serif italic">Carpark</h3>
+                <p class="font-light mb-10 opacity-70 leading-relaxed text-lg">Brighton<br>Victoria 3186</p>
+                <a href="https://www.google.com/maps/place/Brighton+Victoria+3186/@-37.9117998,144.9850966,910m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad668caee4d91d1:0xcd7f405235be19e4!8m2!3d-37.9117998!4d144.9850966!16s%2Fg%2F11gmf980_v?entry=ttu"
+                    target="_blank"
+                    class="inline-block px-10 py-4 btn-gold rounded-sm text-[11px] uppercase font-bold transition-all">View
+                    on Google Maps</a>
+            </div>
+        </section>
+
+        <!-- Wet Weather Option Section -->
+        <section class="max-w-2xl mx-auto mb-40 relative z-10 text-center">
+            <div class="glass-card p-12">
+                <i data-lucide="cloud-rain" class="mx-auto mb-8 text-gold opacity-60" size="40"></i>
+                <h3 class="text-4xl mb-6 serif italic">In case of rain</h3>
+                <p class="font-light mb-10 opacity-70 leading-relaxed text-lg">Sandringham Band Rotunda<br>Sandringham
+                    VIC 3191</p>
+                <a href="https://www.google.com/maps/place/Sandringham+Band+Rotunda/@-37.9513153,145.0027445,57m/data=!3m1!1e3!4m6!3m5!1s0x6ad66f02324de619:0xd0010a9b6f435818!8m2!3d-37.9513379!4d145.0026571!16s%2Fg%2F11b7hndml8?entry=ttu"
+                    target="_blank"
+                    class="inline-block px-10 py-4 btn-gold rounded-sm text-[11px] uppercase font-bold transition-all">View
+                    on Google Maps</a>
+            </div>
+        </section>
+
+        <!-- Formulario RSVP -->
+        <section class="max-w-lg mx-auto mb-40 px-4 relative z-10">
+            <h2 class="text-5xl text-center mb-20 serif italic">RSVP</h2>
+            <form id="rsvp-form" class="space-y-12">
+                <input type="text" placeholder="YOUR FULL NAME"
+                    class="w-full bg-transparent border-b border-[#f9f7f21a] py-4 text-[11px] tracking-widest focus:outline-none focus:border-gold transition-colors uppercase"
+                    required>
+                <div class="pt-6">
+                    <p class="text-[11px] uppercase tracking-widest text-gold mb-8">Will you be attending the party?</p>
+                    <div class="flex flex-col gap-6">
+                        <label class="flex items-center gap-4 cursor-pointer group">
+                            <input type="radio" name="att" value="yes" class="accent-gold" checked>
+                            <span class="text-sm font-light opacity-60 group-hover:opacity-100">Happily Accepts</span>
+                        </label>
+                        <label class="flex items-center gap-4 cursor-pointer group">
+                            <input type="radio" name="att" value="no" class="accent-gold">
+                            <span class="text-sm font-light opacity-60 group-hover:opacity-100">Regretfully
+                                Declines</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="text-center pt-10">
+                    <button type="submit"
+                        class="btn-gold w-full py-6 rounded-sm text-[11px] uppercase font-bold">Confirm
+                        Attendance</button>
+                </div>
+            </form>
+            <div id="success-msg" class="hidden text-center p-16 glass-card rounded-sm">
+                <p class="serif italic text-3xl text-gold mb-4">Thank You</p>
+                <p class="text-sm font-light opacity-60">Your response has been saved.</p>
+            </div>
+        </section>
+
+        <footer class="text-center py-24 border-t border-[#f9f7f20a]">
+            <p class="text-[10px] uppercase tracking-[0.8em] opacity-30">B & L • Wedding Celebration</p>
+        </footer>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.wobble = 0;
+                this.wobbleSpeed = Math.random() * 0.05;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.wobble) * 0.5;
+                this.rotation += this.rotationSpeed;
+                this.wobble += this.wobbleSpeed;
+                if (this.y > canvas.height) { this.y = -20; this.x = Math.random() * canvas.width; }
+            }
+        }
+        function initPetals() { petals = []; const petalCount = window.innerWidth < 768 ? 35 : 70; for (let i = 0; i < petalCount; i++) petals.push(new Petal()); }
+        function animatePetals() { ctx.clearRect(0, 0, canvas.width, canvas.height); petals.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animatePetals); }
+        initPetals(); animatePetals();
+
+        // Temporizador para el 7 de febrero de 2026 a las 18:00 (6 PM)
+        const weddingDate = new Date("February 7, 2026 18:00:00").getTime();
+        const updateTimer = () => {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            if (diff < 0) return;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+        };
+        setInterval(updateTimer, 1000); updateTimer();
+
+        document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.style.opacity = '0';
+            setTimeout(() => { this.style.display = 'none'; document.getElementById('success-msg').classList.remove('hidden'); }, 500);
+        });
+    </script>
+</body>
+
+</html>
