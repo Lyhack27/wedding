@@ -1,0 +1,127 @@
+{
+  "name": "Wedding RSVP Premium",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f3153754-f13c-459f-8aaf-18d98cfc44ee",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "webhookId": "f3153754-f13c-459f-8aaf-18d98cfc44ee"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "GUEST_NAME",
+              "value": "={{ $json.body.name || $json.name || 'Anonymous Guest' }}"
+            },
+            {
+              "name": "ATTENDANCE",
+              "value": "={{ $json.body.attendance || $json.attendance || 'Unknown' }}"
+            },
+            {
+              "name": "SOURCE",
+              "value": "={{ $json.body.source || $json.source || 'Website' }}"
+            },
+            {
+              "name": "DATE",
+              "value": "={{ $now.toFormat(\"dd/MM/yyyy HH:mm\") }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-data",
+      "name": "Prepare Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "briannacfcf@gmail.com",
+        "subject": "=💍 RSVP: {{ $node[\"Prepare Data\"].json.GUEST_NAME }} is {{ $node[\"Prepare Data\"].json.ATTENDANCE === 'yes' ? 'Attending!' : 'Not Attending' }}",
+        "message": "==<div style=\"margin:0; padding:0; background:#f9f7f2; font-family: 'Times New Roman', serif;\">\n  <div style=\"max-width:600px; margin:0 auto; background:#ffffff; border:1px solid #e5e7eb;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\">\n    \n    <!-- Header -->\n    <div style=\"padding:40px 20px; text-align:center; background:#1a1a1a; color:#d4af37;\">\n       <div style=\"font-size:30px; letter-spacing: 0.1em; font-style: italic; margin-bottom: 10px;\">Brianna & Leonardo</div>\n       <div style=\"text-transform: uppercase; font-size: 10px; letter-spacing: 0.3em; color: #fff; opacity: 0.8;\">Wedding Celebration</div>\n    </div>\n\n    <!-- Content -->\n    <div style=\"padding:40px 30px; color:#1a1a1a;\">\n      <h2 style=\"font-size:24px; font-weight:normal; margin:0 0 20px 0; text-align:center; color:#1a1a1a;\">\n        New RSVP Received\n      </h2>\n      \n      <div style=\"background:#f9f7f2; padding:20px; border-left: 3px solid #d4af37; margin-bottom:30px;\">\n        <p style=\"margin:10px 0; font-size:16px;\"><strong>Guest Name:</strong> {{ $node[\"Prepare Data\"].json.GUEST_NAME }}</p>\n        <p style=\"margin:10px 0; font-size:16px;\"><strong>Attendance:</strong> \n          <span style=\"color: {{ $node[\"Prepare Data\"].json.ATTENDANCE === 'yes' ? '#059669' : '#dc2626' }}; font-weight:bold;\">\n            {{ $node[\"Prepare Data\"].json.ATTENDANCE === 'yes' ? 'YES, I will attend' : 'NO, I cannot attend' }}\n          </span>\n        </p>\n        <p style=\"margin:10px 0; font-size:14px; color:#666;\"><strong>Source:</strong> {{ $node[\"Prepare Data\"].json.SOURCE }}</p>\n        <p style=\"margin:10px 0; font-size:14px; color:#666;\"><strong>Date:</strong> {{ $node[\"Prepare Data\"].json.DATE }}</p>\n      </div>\n\n      <p style=\"text-align:center; font-size:14px; color:#888; margin-top:30px;\">\n        You can view all responses in your n8n dashboard.\n      </p>\n    </div>\n\n    <!-- Footer -->\n    <div style=\"background:#1a1a1a; padding:15px; text-align:center; color:#666; font-size:12px;\">\n      Received via Wedding Website Form\n    </div>\n  </div>\n</div>",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Send Notification Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        900,
+        300
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "tFigzIN0822VVseh",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"success\",\n  \"message\": \"RSVP Recorded\"\n}",
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Send Notification Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Notification Email": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

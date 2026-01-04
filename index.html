@@ -40,7 +40,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 5;
         }
 
         .flower-corner {
@@ -175,7 +175,7 @@
 
         main {
             position: relative;
-            z-index: 5;
+            /* z-index: 5; Removed to allow children stacking */
         }
     </style>
 </head>
@@ -219,7 +219,7 @@
 
     <!-- CONTENIDO -->
     <main class="max-w-4xl mx-auto px-6 py-24 relative fade-in">
-        <header class="text-center py-20">
+        <header class="text-center py-20 relative z-2">
             <div class="rings-container">
                 <div class="ring ring-left"></div>
                 <div class="ring ring-right"></div>
@@ -399,8 +399,42 @@
 
         document.getElementById('rsvp-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            this.style.opacity = '0';
-            setTimeout(() => { this.style.display = 'none'; document.getElementById('success-msg').classList.remove('hidden'); }, 500);
+
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'SENDING...';
+            btn.disabled = true;
+
+            const name = this.querySelector('input[type="text"]').value;
+            const attendance = this.querySelector('input[name="att"]:checked').value;
+
+            // NOTE: Use the Production URL when ready (remove '-test' from the URL)
+            const WEBHOOK_URL = 'https://n8n.solidiaai.com/webhook-test/f3153754-f13c-459f-8aaf-18d98cfc44ee';
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    attendance: attendance,
+                    source: 'Main Page'
+                })
+            })
+                .then(response => {
+                    this.style.opacity = '0';
+                    setTimeout(() => {
+                        this.style.display = 'none';
+                        document.getElementById('success-msg').classList.remove('hidden');
+                    }, 500);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    alert('Something went wrong. Please try again.');
+                });
         });
     </script>
 </body>
