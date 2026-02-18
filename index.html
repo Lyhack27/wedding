@@ -189,6 +189,716 @@
             position: relative;
             /* z-index: 5; Removed to allow children stacking */
         }
+
+        /* Envelope Animation Styles */
+        #envelope-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: none;
+            pointer-events: none;
+            background: rgba(20, 31, 24, 0.92);
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+        }
+
+        #envelope-animation.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            animation: backdropFade 0.6s ease-out forwards;
+        }
+
+        @keyframes backdropFade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* INTENSE Petal rain animation - 30 petals */
+        .petal-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 50% 0 50% 0;
+            animation: petalFall linear infinite;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            95% {
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 30 petals with varied positions and timings */
+        .petal:nth-child(1) {
+            left: 5%;
+            animation-duration: 7s;
+            animation-delay: 0s;
+            width: 10px;
+            height: 10px;
+        }
+
+        .petal:nth-child(2) {
+            left: 12%;
+            animation-duration: 9s;
+            animation-delay: 0.5s;
+            width: 14px;
+            height: 14px;
+        }
+
+        .petal:nth-child(3) {
+            left: 18%;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .petal:nth-child(4) {
+            left: 25%;
+            animation-duration: 10s;
+            animation-delay: 0.3s;
+            width: 11px;
+            height: 11px;
+        }
+
+        .petal:nth-child(5) {
+            left: 32%;
+            animation-duration: 7.5s;
+            animation-delay: 1.5s;
+        }
+
+        .petal:nth-child(6) {
+            left: 38%;
+            animation-duration: 9.5s;
+            animation-delay: 0.8s;
+            width: 13px;
+            height: 13px;
+        }
+
+        .petal:nth-child(7) {
+            left: 45%;
+            animation-duration: 8.5s;
+            animation-delay: 2s;
+        }
+
+        .petal:nth-child(8) {
+            left: 52%;
+            animation-duration: 10.5s;
+            animation-delay: 0.2s;
+            width: 15px;
+            height: 15px;
+        }
+
+        .petal:nth-child(9) {
+            left: 58%;
+            animation-duration: 7.8s;
+            animation-delay: 1.2s;
+        }
+
+        .petal:nth-child(10) {
+            left: 65%;
+            animation-duration: 9.2s;
+            animation-delay: 0.6s;
+            width: 12px;
+            height: 12px;
+        }
+
+        .petal:nth-child(11) {
+            left: 72%;
+            animation-duration: 8.3s;
+            animation-delay: 1.8s;
+        }
+
+        .petal:nth-child(12) {
+            left: 78%;
+            animation-duration: 10.2s;
+            animation-delay: 0.4s;
+            width: 11px;
+            height: 11px;
+        }
+
+        .petal:nth-child(13) {
+            left: 85%;
+            animation-duration: 7.6s;
+            animation-delay: 1.3s;
+        }
+
+        .petal:nth-child(14) {
+            left: 92%;
+            animation-duration: 9.8s;
+            animation-delay: 0.9s;
+            width: 14px;
+            height: 14px;
+        }
+
+        .petal:nth-child(15) {
+            left: 8%;
+            animation-duration: 8.8s;
+            animation-delay: 2.2s;
+        }
+
+        .petal:nth-child(16) {
+            left: 15%;
+            animation-duration: 10.8s;
+            animation-delay: 0.1s;
+            width: 13px;
+            height: 13px;
+        }
+
+        .petal:nth-child(17) {
+            left: 22%;
+            animation-duration: 7.2s;
+            animation-delay: 1.6s;
+        }
+
+        .petal:nth-child(18) {
+            left: 28%;
+            animation-duration: 9.6s;
+            animation-delay: 0.7s;
+            width: 12px;
+            height: 12px;
+        }
+
+        .petal:nth-child(19) {
+            left: 35%;
+            animation-duration: 8.2s;
+            animation-delay: 2.1s;
+        }
+
+        .petal:nth-child(20) {
+            left: 42%;
+            animation-duration: 10.3s;
+            animation-delay: 0.5s;
+            width: 15px;
+            height: 15px;
+        }
+
+        .petal:nth-child(21) {
+            left: 48%;
+            animation-duration: 7.9s;
+            animation-delay: 1.4s;
+        }
+
+        .petal:nth-child(22) {
+            left: 55%;
+            animation-duration: 9.3s;
+            animation-delay: 0.3s;
+            width: 11px;
+            height: 11px;
+        }
+
+        .petal:nth-child(23) {
+            left: 62%;
+            animation-duration: 8.6s;
+            animation-delay: 1.9s;
+        }
+
+        .petal:nth-child(24) {
+            left: 68%;
+            animation-duration: 10.6s;
+            animation-delay: 0.6s;
+            width: 14px;
+            height: 14px;
+        }
+
+        .petal:nth-child(25) {
+            left: 75%;
+            animation-duration: 7.4s;
+            animation-delay: 1.1s;
+        }
+
+        .petal:nth-child(26) {
+            left: 82%;
+            animation-duration: 9.9s;
+            animation-delay: 0.8s;
+            width: 13px;
+            height: 13px;
+        }
+
+        .petal:nth-child(27) {
+            left: 88%;
+            animation-duration: 8.4s;
+            animation-delay: 2.3s;
+        }
+
+        .petal:nth-child(28) {
+            left: 95%;
+            animation-duration: 10.1s;
+            animation-delay: 0.2s;
+            width: 12px;
+            height: 12px;
+        }
+
+        .petal:nth-child(29) {
+            left: 10%;
+            animation-duration: 7.7s;
+            animation-delay: 1.7s;
+        }
+
+        .petal:nth-child(30) {
+            left: 50%;
+            animation-duration: 9.4s;
+            animation-delay: 0.4s;
+            width: 15px;
+            height: 15px;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 450px;
+            height: 300px;
+            animation: containerAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform: scale(0.6);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        @keyframes containerAppear {
+            0% {
+                transform: scale(0.6) translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        /* Main envelope body */
+        .envelope-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(135deg, #e8dcc4 0%, #d4c5a9 50%, #c9b896 100%);
+            border-radius: 8px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(139, 69, 19, 0.25);
+            z-index: 5;
+        }
+
+        /* Letter/Card that slides INTO envelope */
+        .letter-card {
+            position: absolute;
+            top: -280px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 180px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            border-radius: 4px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            animation: letterSlideIn 2s cubic-bezier(0.65, 0, 0.35, 1) 1.5s forwards;
+            z-index: 7;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            opacity: 0;
+        }
+
+        @keyframes letterSlideIn {
+            0% {
+                top: -280px;
+                opacity: 0;
+                z-index: 7;
+            }
+
+            10% {
+                opacity: 1;
+                z-index: 7;
+            }
+
+            80% {
+                z-index: 7;
+            }
+
+            81% {
+                z-index: 1;
+            }
+
+            100% {
+                top: 52%;
+                transform: translateX(-50%) translateY(-50%);
+                opacity: 1;
+                z-index: 1;
+            }
+        }
+
+        /* Top triangular flap - OPENS then CLOSES (inverted) */
+        .envelope-flap-top {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-top: 140px solid #f5ede0;
+            filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.3));
+            transform-origin: 50% 0%;
+            animation: flapOpenCloseInverted 4s ease-in-out 0.8s forwards;
+            z-index: 6;
+        }
+
+        @keyframes flapOpenCloseInverted {
+            0% {
+                transform: translateX(-50%) scaleY(1);
+            }
+
+            20% {
+                transform: translateX(-50%) scaleY(-1);
+            }
+
+            80% {
+                transform: translateX(-50%) scaleY(-1);
+            }
+
+            100% {
+                transform: translateX(-50%) scaleY(1);
+            }
+        }
+
+        /* Left side flap - closes from left */
+        .envelope-flap-left {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 105px solid transparent;
+            border-bottom: 105px solid transparent;
+            border-left: 140px solid #d4c5a9;
+            filter: brightness(0.9) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            transform-origin: right center;
+            animation: flapLeftClose 1.5s cubic-bezier(0.68, -0.25, 0.265, 1.25) 2.5s forwards;
+            opacity: 0;
+            z-index: 8;
+        }
+
+        @keyframes flapLeftClose {
+            0% {
+                transform: translateY(-50%) translateX(-140px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(-50%) translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Right side flap - closes from right */
+        .envelope-flap-right {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 105px solid transparent;
+            border-bottom: 105px solid transparent;
+            border-right: 140px solid #d4c5a9;
+            filter: brightness(0.9) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            transform-origin: left center;
+            animation: flapRightClose 1.5s cubic-bezier(0.68, -0.25, 0.265, 1.25) 2.5s forwards;
+            opacity: 0;
+            z-index: 8;
+        }
+
+        @keyframes flapRightClose {
+            0% {
+                transform: translateY(-50%) translateX(140px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(-50%) translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Wax seal - ULTRA REALISTIC texture */
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            width: 90px;
+            height: 90px;
+            background:
+                radial-gradient(circle at 28% 22%, rgba(255, 80, 80, 0.9) 0%, transparent 15%),
+                radial-gradient(circle at 70% 30%, rgba(255, 100, 100, 0.6) 0%, transparent 20%),
+                radial-gradient(circle at 45% 45%, #dc143c 0%, #b91c2e 35%, #8b0000 70%, #5c0000 100%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: sealAppear 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 4.8s forwards;
+            box-shadow:
+                0 12px 35px rgba(139, 0, 0, 0.9),
+                0 6px 15px rgba(0, 0, 0, 0.6),
+                inset -5px -5px 10px rgba(0, 0, 0, 0.6),
+                inset 5px 5px 10px rgba(255, 100, 100, 0.4),
+                inset 0 0 30px rgba(139, 0, 0, 0.5),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            position: relative;
+        }
+
+        @keyframes sealAppear {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(-540deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translate(-50%, -50%) scale(1.25) rotate(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translate(-50%, -50%) scale(0.95) rotate(-10deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Add texture overlay for realism */
+        .wax-seal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 12%),
+                radial-gradient(circle at 60% 25%, rgba(255, 255, 255, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 40% 70%, rgba(0, 0, 0, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 75% 65%, rgba(0, 0, 0, 0.15) 0%, transparent 18%);
+            border-radius: 50%;
+            mix-blend-mode: overlay;
+        }
+
+        /* Embossed initials with realistic depth */
+        .wax-seal::after {
+            content: 'B & L';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(200, 50, 50, 0.95);
+            text-shadow:
+                0 1px 0 rgba(255, 150, 150, 0.8),
+                0 -1px 0 rgba(0, 0, 0, 0.9),
+                1px 0 0 rgba(255, 100, 100, 0.6),
+                -1px 0 0 rgba(0, 0, 0, 0.7),
+                0 3px 8px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: 3px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+        }
+
+        /* Wax drips with realistic texture */
+        .wax-drips {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .wax-drip {
+            position: absolute;
+            background: linear-gradient(to bottom, #b91c2e, #8b0000, #5c0000);
+            opacity: 0.95;
+            border-radius: 0 0 50% 50%;
+            box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .wax-drip:nth-child(1) {
+            width: 14px;
+            height: 18px;
+            top: 78px;
+            left: 6px;
+            transform: rotate(-25deg);
+        }
+
+        .wax-drip:nth-child(2) {
+            width: 12px;
+            height: 16px;
+            top: 80px;
+            right: 8px;
+            transform: rotate(30deg);
+        }
+
+        .wax-drip:nth-child(3) {
+            width: 13px;
+            height: 17px;
+            top: 82px;
+            left: 50%;
+            transform: translateX(-50%) rotate(8deg);
+        }
+
+        .wax-drip:nth-child(4) {
+            width: 10px;
+            height: 14px;
+            top: 75px;
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+
+        .wax-drip:nth-child(5) {
+            width: 11px;
+            height: 15px;
+            top: 77px;
+            right: 22px;
+            transform: rotate(18deg);
+        }
+
+        /* Success message */
+        .envelope-message {
+            position: absolute;
+            bottom: -130px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: messageAppear 1.3s ease-out 6.3s forwards;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        @keyframes messageAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .envelope-message p {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            color: var(--gold-accent);
+            font-style: italic;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .envelope-container {
+                width: 340px;
+                height: 230px;
+            }
+
+            .envelope-body {
+                height: 65%;
+            }
+
+            .letter-card {
+                height: 140px;
+            }
+
+            .envelope-flap-left,
+            .envelope-flap-right {
+                border-top: 72px solid transparent;
+                border-bottom: 72px solid transparent;
+            }
+
+            .envelope-flap-left {
+                border-left: 100px solid #d4c5a9;
+            }
+
+            .envelope-flap-right {
+                border-right: 100px solid #d4c5a9;
+            }
+
+            .envelope-flap-top {
+                border-left: 170px solid transparent;
+                border-right: 170px solid transparent;
+                border-top: 105px solid #f5ede0;
+            }
+
+            .wax-seal {
+                width: 70px;
+                height: 70px;
+            }
+
+            .wax-seal::after {
+                font-size: 16px;
+            }
+
+            .envelope-message {
+                bottom: -110px;
+            }
+
+            .envelope-message p {
+                font-size: 24px;
+            }
+
+            .petal {
+                width: 10px;
+                height: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -366,7 +1076,10 @@
         <section class="max-w-lg mx-auto mb-40 px-4 relative z-10">
             <h2 class="text-5xl text-center mb-20 serif italic">RSVP</h2>
             <form id="rsvp-form" class="space-y-12">
-                <input type="text" placeholder="YOUR FULL NAME"
+                <input type="text" id="guest-name" placeholder="YOUR FULL NAME"
+                    class="w-full bg-transparent border-b border-[#f9f7f21a] py-4 text-[11px] tracking-widest focus:outline-none focus:border-gold transition-colors uppercase"
+                    required>
+                <input type="email" id="guest-email" placeholder="YOUR EMAIL"
                     class="w-full bg-transparent border-b border-[#f9f7f21a] py-4 text-[11px] tracking-widest focus:outline-none focus:border-gold transition-colors uppercase"
                     required>
                 <div class="pt-6">
@@ -399,6 +1112,70 @@
             <p class="text-[10px] uppercase tracking-[0.8em] opacity-30">B & L • Wedding Celebration</p>
         </footer>
     </main>
+
+    <!-- Envelope Animation -->
+    <div id="envelope-animation">
+        <!-- INTENSE Petal rain background - 30 petals -->
+        <div class="petal-rain">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+        </div>
+
+        <div class="envelope-container">
+            <div class="envelope">
+                <!-- Letter that slides in -->
+                <div class="letter-card"></div>
+                <!-- Main envelope body -->
+                <div class="envelope-body"></div>
+                <!-- Side flaps - close from sides -->
+                <div class="envelope-flap-left"></div>
+                <div class="envelope-flap-right"></div>
+                <!-- Top triangular flap - opens and closes -->
+                <div class="envelope-flap-top"></div>
+                <!-- Wax seal with realistic texture -->
+                <div class="wax-seal">
+                    <div class="wax-drips">
+                        <div class="wax-drip"></div>
+                        <div class="wax-drip"></div>
+                        <div class="wax-drip"></div>
+                        <div class="wax-drip"></div>
+                        <div class="wax-drip"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="envelope-message">
+                <p>La invitación se ha enviado a tu correo</p>
+            </div>
+        </div>
+    </div>
 
     <script>
         lucide.createIcons();
@@ -447,8 +1224,8 @@
         const weddingDate = new Date("February 7, 2026 18:00:00").getTime();
         const updateTimer = () => {
             const now = new Date().getTime();
-            const diff = weddingDate - now;
-            if (diff < 0) return;
+            const diff = now - weddingDate; // Calculate time elapsed since wedding
+
             document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
             document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
             document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
@@ -463,7 +1240,8 @@
             btn.innerText = 'SENDING...';
             btn.disabled = true;
 
-            const name = this.querySelector('input[type="text"]').value;
+            const name = document.getElementById('guest-name').value;
+            const email = document.getElementById('guest-email').value;
             const attendance = this.querySelector('input[name="att"]:checked').value;
 
             // NOTE: Using Production URL. ensure to ACTIVATE the workflow in n8n.
@@ -476,16 +1254,24 @@
                 },
                 body: JSON.stringify({
                     name: name,
+                    email: email,
                     attendance: attendance,
                     source: 'Main Page'
                 })
             })
                 .then(response => {
                     if (response.ok) {
+                        // Trigger envelope animation
+                        const envelopeAnimation = document.getElementById('envelope-animation');
+                        envelopeAnimation.classList.add('active');
+
+                        // Hide form with fade out
+                        this.style.transition = 'opacity 0.5s ease-out';
                         this.style.opacity = '0';
+
+                        // After animation completes (5.5 seconds), hide form completely
                         setTimeout(() => {
                             this.style.display = 'none';
-                            document.getElementById('success-msg').classList.remove('hidden');
                         }, 500);
                     } else {
                         throw new Error('Network response was not ok.');
